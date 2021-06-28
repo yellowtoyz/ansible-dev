@@ -1,6 +1,7 @@
 ---
 - name: Playbook - Install figlet   # providing meta-data for the playbook
   hosts: planetexpress # resolved in our "inventory"
+  # or plantexpress:!farnsworth   -  use plantexpress except farnsworth
   gather_facts: yes   # default is yes
   connection: ssh     # use the connection type ssh (ssh is the default if this is not specified)
 
@@ -10,3 +11,4 @@
         name: figlet   # name parameter - provides the name of the app
         state: present  # state parameter - present = install if not present, do nothing it is install
     become: yes         # ansible keyword, run as sudo
+    when: ansible_os_family == "Debian"    #  to skip systems that do not know "apt" command
