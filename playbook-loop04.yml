@@ -11,3 +11,7 @@
       - "255.255.255.0"
       - "192.168.0.1"
       - "192.168.0.2"
+
+    # loop: is the new way over with_items - loop is only a look of items 
+    # there are other with_ options
+    # loops are slow

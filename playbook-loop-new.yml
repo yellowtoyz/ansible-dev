@@ -1,0 +1,34 @@
+---
+- name: Intro to looping
+  hosts: localhost
+  gather_facts: no
+
+  vars:   # vars available to all tasks (playbook vars)
+    ethList:
+      - "eth0"
+      - "eth1"
+      - "eth2"
+      - "eth3"
+
+      # msg is a parameter of debug
+      # loop is a task key word
+      # item is a reserved word - when using a loop 'item' will auto be each item of the var being used for loop
+  
+    tasks:
+    - name: Demo a tiny loop
+      debug:
+        # item is always the var mapped to loop
+        msg: "The debug module allows us to display to the screen: {{ item }}"
+      loop: "{{ ethList }}"
+
+    - name: Demo a second tiny loop
+      debug:
+        # item is always the var mapped to loop
+        msg: "All modules can also have LOCAL var information: {{ item }}"
+      loop: "{{ myOtherList }}"
+      vars:
+        myOtherList:
+          - "192.168.70.1"
+          - "10.10.1.1"
+
+      # the vars in this task make the vars just for this task
