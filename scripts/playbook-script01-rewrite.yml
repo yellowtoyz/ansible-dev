@@ -1,0 +1,17 @@
+---
+- name: Do not use a script to do this
+  hosts: localhost
+
+  vars:
+     urltouse: "https://statsapi.web.nhl.com/api/v1/teams"
+
+  tasks:
+  - name: Lookup api with uri module
+    uri:
+      url: "{{ urltouse }}"
+      method: GET
+    register: results     # save the JSON results
+
+  - name: Print the 'results'
+    debug:
+      var: results
